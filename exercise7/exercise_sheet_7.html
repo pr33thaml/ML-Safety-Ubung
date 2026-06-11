@@ -7811,17 +7811,17 @@ a.anchor-link {
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [11]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
-<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span>
-<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span>
-<span class="kn">from</span><span class="w"> </span><span class="nn">torchvision</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">transforms</span>
+<div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">os</span> <span class="c1">#using this to work with folders and files [later we use os.listdir() to get the list of files in a folder and os.path.join() to create file paths]</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span> <span class="c1">#matplotlib to display images and plots [later we use plt.imshow() to display images]]</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">PIL</span><span class="w"> </span><span class="kn">import</span> <span class="n">Image</span> <span class="c1">#to open the .jpg images #pil means python imaging library [later we use Image.open() to open the images]</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">numpy</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">np</span> <span class="c1">#numpy for numerical operations [later we use np.array() to convert images to numpy arrays and np.mean() to calculate mean confidence scores]</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">pandas</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">pd</span> <span class="c1"># to create a table summarizing the confidence values of the three models on ID, fog, and night images.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch</span> <span class="c1">#torch because our trained models were built using PyTorch. It was used to load models, run inference, and compute predictions.</span>
+<span class="kn">import</span><span class="w"> </span><span class="nn">torch.nn</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">nn</span> <span class="c1">#to modify the last layer of the resnet18 model to output a single confidence score</span>
+<span class="kn">from</span><span class="w"> </span><span class="nn">torchvision</span><span class="w"> </span><span class="kn">import</span> <span class="n">models</span><span class="p">,</span> <span class="n">transforms</span> <span class="c1">#models to load the resnet18 architecture and transforms to preprocess images, resize images to 224*224</span>
 </pre></div>
 </div>
 </div>
@@ -7868,6 +7868,20 @@ a.anchor-link {
 <span class="n">town_dir</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">base</span><span class="p">,</span> <span class="s2">"test-town-01"</span><span class="p">,</span> <span class="s2">"rgb-front"</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=04a9bc56">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>so basicallly, we didnt knw the world name we trained on? so we used this code from yaml config file</p>
+<p>then we got all filenames using listdir</p>
+<p>then we sort the images</p>
+<p>later we only take 5 images [:5]= this :5, we are taking first 5 elements of the list [basically slicing operation] to visualize them</p>
 </div>
 </div>
 </div>
@@ -7999,8 +8013,7 @@ a.anchor-link {
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h3 id="Different-CARLA-town-(test-town-01)">Different CARLA town (<code>test-town-01</code>)<a class="anchor-link" href="#Different-CARLA-town-(test-town-01)">¶</a></h3><p>The CARLA map for each split is in that folder's <code>.hydra/config.yaml</code> (<code>world_name</code> — printed in the cell above). <code>test-town-01</code> uses a different map than <code>train</code>, but the same sunny daytime weather.</p>
-<p>Below we show 5 training images vs 5 town images side by side.</p>
+<h3 id="Different-CARLA-Town-(test-town-01)">Different CARLA Town (<code>test-town-01</code>)<a class="anchor-link" href="#Different-CARLA-Town-(test-town-01)">¶</a></h3><p><code>test-town-01</code> was collected in a different CARLA town than the training data, but under the same sunny daytime conditions. Below, we compare 5 training images with 5 images from the new town.</p>
 </div>
 </div>
 </div>
@@ -8146,6 +8159,64 @@ Comparison:</p>
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=85230546">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li><p>run on gpu [mps device] instead of CPU [only for APple silicon]</p>
+</li>
+<li><p>then transform every image to correct format expected by ResNet models [224*224] and then convert to <strong>tensors</strong></p>
+</li>
+<li><p>Then, for every image in a given folder, we:</p>
+</li>
+<li><p>got all image filenames using os.listdir,</p>
+</li>
+<li><p>sorted them to process the images in a consistent order,</p>
+</li>
+<li><p>ignored non-image files,</p>
+</li>
+<li><p>opened each image and applied the preprocessing transformations,</p>
+</li>
+<li><p>Pass the processed image through the trained model to obtain a prediction.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f255131d">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p><strong>Tensors??</strong></p>
+<ul>
+<li><p>yes, first from PIL we just get an image,</p>
+</li>
+<li><p>next we take the RGB channels and convert them to numbers</p>
+</li>
+<li><p>Eg: tensor([
+[[0.12, 0.15, ..., 0.08],   # Red channel
+[0.10, 0.18, ..., 0.07],
+...
+],</p>
+</li>
+<li><p>with proper shape specifed: torch.Size([3, 224, 224])</p>
+</li>
+<li><p>when we finally run: img = img.unsqueeze(0)
+we get: torch.Size([1, 3, 224, 224])</p>
+</li>
+<li><p>where, 1 is the batch size [1/single image], 3 is the rgb channels and finally, 224*224 is the heigh and width [image size]]</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell jp-mod-noOutputs" id="cell-id=203b6010">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -8195,6 +8266,20 @@ Comparison:</p>
     <span class="k">return</span> <span class="n">np</span><span class="o">.</span><span class="n">mean</span><span class="p">(</span><span class="n">confidences</span><span class="p">)</span>
 </pre></div>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=3ec8b4ec">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>1] our models are binary classifiers, we used sigmoid to convert the model output into a probability.</p>
+<p>From this probability, we computed the model's confidence in its own decision (whether it predicted the positive class or the negative class).</p>
+<p>2] Finally, we stored the confidence values for all images in that folder and computed their <strong>mean</strong> using NumPy.</p>
+<p>This gave us a single number representing the average confidence of the model on that dataset (llike ID, fog, or night).</p>
 </div>
 </div>
 </div>
@@ -8400,6 +8485,17 @@ Night: 0.9376801716018882
 </div>
 </div>
 </div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7aebb6d9">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>check the output of this model? in terms of neurons]</p>
+</div>
+</div>
+</div>
 </div><div class="jp-Cell jp-CodeCell jp-Notebook-cell" id="cell-id=421a6314">
 <div class="jp-Cell-inputWrapper" tabindex="0">
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
@@ -8424,6 +8520,31 @@ Night: 0.9376801716018882
 <pre>torch.Size([1, 512])
 </pre>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=7f8608db">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<ul>
+<li>The model is a binary classifier with a <strong>single output neuron</strong>, and therefore we should use sigmoid, not softmax. [1 output neuron and 512 input features to the fc layer]</li>
+<li><strong>if</strong> we got this: torch.Size([3, 512]), meaning 3 output classes, so we would likely use softmax instead.</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=1e2c3d9b">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>So the FC layer is simply the last layer that converts learned features into class predictions.</p>
 </div>
 </div>
 </div>
@@ -8588,9 +8709,9 @@ Night: 0.7765062206114332
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>1] Pedestrian model: slightly more confident on fog and night images, suggesting possible overconfidence under OOD conditions.</p>
-<p>Vehicle model: much less confident on fog images, while night confidence remains similar to ID.</p>
-<p>Traffic light model: less confident on fog images but more confident on night images.</p>
+<p>1] Pedestrian model: slightly <em><strong>more confident on fog and night images</strong></em>, suggesting possible overconfidence under OOD conditions.</p>
+<p>2] Vehicle model: much less confident on fog images, while night confidence remains similar to ID.</p>
+<p>3] Traffic light model: less confident on fog images but more confident on night images.</p>
 </div>
 </div>
 </div>
@@ -8601,10 +8722,15 @@ Night: 0.7765062206114332
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>2] The confidence changed differently across models.</p>
-<p>The pedestrian model remained highly confident and was even slightly more confident on fog and night images.</p>
-<p>The vehicle and traffic-light models showed reduced confidence on fog images, indicating that fog introduced a stronger distribution shift for these tasks.</p>
-<p>Overall, OOD conditions do not always reduce confidence, highlighting that model confidence alone may not reliably indicate distribution shift.</p>
+<p>2] How the confidence changed?</p>
+<ul>
+<li><p>The pedestrian model remained highly confident and was even slightly more confident on fog and night images.</p>
+</li>
+<li><p><strong>Vehicle and traffic-light models</strong> showed reduced confidence on fog images, indicating that fog introduced a stronger distribution shift for these tasks.</p>
+</li>
+<li><p>Overall, OOD conditions do not always reduce confidence, highlighting that model confidence alone may not reliably indicate distribution shift.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -8615,7 +8741,7 @@ Night: 0.7765062206114332
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<h2 id="PLot-and-AUROC-curve">PLot and AUROC curve<a class="anchor-link" href="#PLot-and-AUROC-curve">¶</a></h2>
+<h2 id="MSP-Based-OOD-Detection-Evaluation">MSP-Based OOD Detection Evaluation<a class="anchor-link" href="#MSP-Based-OOD-Detection-Evaluation">¶</a></h2>
 </div>
 </div>
 </div>
@@ -8665,7 +8791,7 @@ Night: 0.7765062206114332
 <div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
 </div>
 <div class="jp-InputArea jp-Cell-inputArea">
-<div class="jp-InputPrompt jp-InputArea-prompt">In [48]:</div>
+<div class="jp-InputPrompt jp-InputArea-prompt">In [ ]:</div>
 <div class="jp-CodeMirrorEditor jp-Editor jp-InputArea-editor" data-type="inline">
 <div class="cm-editor cm-s-jupyter">
 <div class="highlight hl-ipython3"><pre><span></span><span class="kn">import</span><span class="w"> </span><span class="nn">matplotlib.pyplot</span><span class="w"> </span><span class="k">as</span><span class="w"> </span><span class="nn">plt</span>
@@ -8681,7 +8807,7 @@ Night: 0.7765062206114332
 <span class="n">plt</span><span class="o">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s2">"OOD Score"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s2">"Count"</span><span class="p">)</span>
 <span class="n">plt</span><span class="o">.</span><span class="n">legend</span><span class="p">()</span>
-<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span>
+<span class="n">plt</span><span class="o">.</span><span class="n">show</span><span class="p">()</span><span class="mi">0</span>
 </pre></div>
 </div>
 </div>
@@ -8696,6 +8822,17 @@ Night: 0.7765062206114332
 <div class="jp-RenderedImage jp-OutputArea-output" tabindex="0">
 <img alt="No description has been provided for this image" class="" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAkUAAAGwCAYAAACnyRH2AAAAOnRFWHRTb2Z0d2FyZQBNYXRwbG90bGliIHZlcnNpb24zLjEwLjksIGh0dHBzOi8vbWF0cGxvdGxpYi5vcmcvJkbTWQAAAAlwSFlzAAAPYQAAD2EBqD+naQAALnxJREFUeJzt3Qd8VGW6x/EnPbTQ0yQ0Wap0BNEFQUKRIqzcqy5IUcQGrMCKyJUFRFdcFolK1VWMuiLFRWUBA6HYKOKiSAidhaUmIAqhJiGc+3nec2duhhSSMJlMkt/38zlO5px3Zk4Okfx53nJ8LMuyBAAAoJTzLeoTAAAA8AaEIgAAAEIRAACAjUoRAAAAoQgAAMBGpQgAAIBQBAAAYPP/v0fk4tq1a3LixAmpUKGC+Pj4cK0AACgGdCnG8+fPS2RkpPj63rhzjFCUBxqIoqKi3PHnAwAAPOzo0aNSo0aNG7YjFOWBVogcFzUkJOTm/3QAAEChS0lJMUUNx+/xGyEU5YGjy0wDEaEIAIDiJa9DX5h9BgAAQCgCAACwUSkCAABgTBEAAJ6VkZEh6enpXHY3CQwMzNN0+7xgoDUAAB5aMycpKUnOnj3L9XYjDUR16tQx4ehmEYoAAPAARyAKDQ2VsmXLshiwGxdXPnnypNSsWfOmrymhCAAAD3SZOQJR1apVud5uVL16dROMrl69KgEBATf1Xgy0BgCgkDnGEGmFCO7l6DbT4HmzCEUAAHgI98/07mtKKAIAACAUAQAA2BhoDQBAEYqJ3+exzxrTtb7HPqs4ovsMAADkaOjQodKvXz/n1zqGRzed6RUWFiZdu3aVBQsWmOnxxR2hCAAA5FmPHj3MukCHDx+WL774Qjp37izPPPOM9O7d20yLL87oPgMAAHkWFBQk4eHh5utbbrlFWrVqJXfccYd06dJFYmNj5bHHHpPiilDkpeZun5undk+3eLrQzwUAgNzcc8890rx5c1m2bFmxDkV0nwEAgJvWsGFD06VWnBGKAACAW254W9wXpyQUAQCAm7Z7925zt/rijFAEAABuyvr16yUhIUH69+8vxRkDrQEAQJ6lpqZKUlKSuQFrcnKyxMXFybRp08yU/MGDB0txRigCAKAIFbdVpuPi4iQiIkL8/f2lcuXKZtbZm2++KUOGDBFf3+LdAUUoAgAAOdK1hzJ/nfl5SVO8Ix0AAICbEIoAAAAIRQAAADYqRQAAAIQiAAAAG5UiAAAAQhEAAICNShEAAAChCAAAwMaK1gAAFKUN0zz3WZ0n5PslQ4cOlffffz/L/v3790u9evWkJCEUAQCAXPXo0UPee+89l33Vq1eXkoYxRQAAIFdBQUESHh7usvn5+clXX30lbdu2Ncf1JrHPP/+8XL161fm68+fPy8CBA6VcuXLmeExMjHTq1ElGjx4t3ohQBAAA8u348ePSs2dPuf322+Wnn36SefPmybvvvisvv/yys83YsWNl48aNsnz5comPj5dvvvlGfvjhB/FWdJ8BAIBcrVixQsqXL+98fu+990r9+vUlKipKZs+eLT4+PtKwYUM5ceKEjB8/XiZNmiQXL140Y5EWLlwoXbp0Ma/TLrjIyEjxVoQiAACQq86dO5tKkIN2h40YMULat29vApHDXXfdJRcuXJBjx47Jr7/+Kunp6aZ7zaFixYrSoEED8VaEIgAAkCsNQSVtpll2GFMEAADyrVGjRrJ582axLMu5T8cPVahQQWrUqCF169aVgIAA+f77753Hz507J/v27RNvRSgCAAD59vTTT8vRo0dl1KhRsmfPHvn8889l8uTJZnC1r6+vCUdDhgyRcePGyYYNGyQxMVGGDRtmjmXucvMmhCIAAJBvt9xyi6xatUq2bt0qzZs3lyeffNKEnokTJzrbzJw504w76t27t0RHR5sxR1phCg4OFm/EmCIAAIpSAVaZ9qTY2Ngcj919990mFOVEq0UfffSR87nOSHvxxRfl8ccfF29EKAIAAIXixx9/NF1rOgNNxxNNnTrV7O/bt694I0IRAAAoNDNmzJC9e/dKYGCgtG7d2izgWK1aNfFGhCIAAFAoWrZsKdu2bZPigoHWAAAAhCIAAAAblSIAAICiDkXTpk0zd9fVKXuhoaHSr18/Mxgrs06dOplFnjJvuhZCZkeOHJFevXpJ2bJlzfvoQlFXr151afPll19Kq1atJCgoyCxVntsUQwAAUPoUaSj66quvzA3ltmzZIvHx8ebGcd26dTPrGGQ2fPhwOXnypHObPn2681hGRoYJRGlpabJp0yZzR14NPHqHXodDhw6ZNnpDu+3bt8vo0aPlsccek9WrV3v0+wUAAN6rSGefxcXFuTzXMKOVHh2p3rFjR+d+rQCFh4dn+x5r1qyRXbt2ydq1ayUsLExatGghL730kowfP16mTJlipgDOnz9f6tSpI6+99pp5ja6m+e2330pMTIx07969kL9LAABQHHjVmCJd2ElVqVLFZb+uhqlrGtx2220yYcIEuXTpkvOY3oyuadOmJhA5aNBJSUkx91lxtNHlxTPTNro/O6mpqeb1mTcAAJA9LWpUqlRJ8mPo0KFm2Iw38Zp1iq5du2a6tfS+KBp+HAYMGCC1atWSyMhI2bFjh6kA6bijZcuWmeNJSUkugUg5nuux3Npo2Ll8+bKUKVMmy1gnXYYcAIDCNnf7XI9d5KdbPJ3v1wwdOtQMTdHfjc8//7xz/2effSa/+93vxLIsefDBB6Vnz55uPluR2rVrm2ygW6kKRTq2aOfOnaZbK7PM90fRilBERIR06dJFDh48KLfeemuhnItWo/Quvw4anqKiogrlswAA8HbBwcHyl7/8RZ544gmpXLlyluNaXLi+wFAceUX32ciRI2XFihWyYcMGqVGjRq5t27VrZx4PHDhgHnWsUXJysksbx3PHOKSc2oSEhGT7h6gz1PRY5g0AgNIqOjra/C7ValFeu89efvllM05YZ5jr5CatMum43+xuA6IFj6pVq5oCiU66csw+/89//iNjxoxxzj4v0aFIS24aiD799FNZv369GQx9Izp7TOkFVO3bt5eEhAQ5deqUs43OZNMg07hxY2ebdevWubyPttH9AAAgd35+fvLKK6/IrFmz5NixYze8XDoW+M9//rOpLunkqZo1a8q8efOytNNiiPb86KNj9rhjyRwdJqOFEr2JrGP2eYkORZoI//73v8vChQtNktSxP7rpOB+lF0pnkukFPXz4sCxfvlwGDx5sZqY1a9bMtNEp/Bp+Bg0aJD/99JOZZj9x4kTz3lrxUbqu0b///W957rnnzN16586dK0uWLDHpEwAA3JiOH9JKz+TJk2/YVsPTsGHD5JFHHpH69eubZXJ0CMz1tCtu9uzZ0rBhQ+ndu7dZPsdRxNBJVxrGNB9olSqnWeglJhRpatQZZ1oi08qPY1u8eLE5rtPpdaq9Bh+9YH/84x+lf//+8s9//tP5HnrBtOtNH7Xy8/DDD5vgpMnSQStQK1euNNWh5s2bm6n577zzDtPxAQDIh7/85S+morN79+5c2+mEqLZt27rsu/65atKkifn97aAZIHPPj6f5F3X3WW50cLMu8HgjOjtt1apVubbR4PXjjz/m+xwBAIBNe2p0SRudkKSz0m5WQECAy3MdN6Sz0Uv1QGsAAFA8vPrqq6bHJqe1/lSDBg3k+++/d9l3/fO80B4jvXOFpxCKAABAnunYoIEDB8qbb76ZY5tRo0bJu+++a7ra9u/fb2ai6VqD+Z1BpusUff3113L8+HH5+eefpbARigAAQL7ouN3curk0NGkX27PPPmtuxq73INXuNl3vKL+foxOtdF3C6tWrS2HzsW40sAdm8caKFSuaQeGeWrMoryucFmR1UgCAZ125csUEA534k99gUFJ07drVzCD78MMPPXZt8/v722tWtAYAACXDpUuXzM3YdVC2zi77+OOPzWxynQXuzQhFAADArXTskM4K1wUctZKjA6//8Y9/ZLk5u7chFAEAALfSW2hpZai4YaA1AAAAoQgAAM9hbpN3X1MqRQAAFDLHys06ABnulZaWZh4z3y6koBhTBABAIdNf2JUqVXLe16ts2bL5XsgQWelaSadPnzbX09//5iMNoQgAAA9w3OW9KG94WhL5+vpKzZo13RIyCUUAAHiA/tLWu8CHhoZKeno619xN9P5oGozcgVAEAICHu9LcMf4F7sdAawAAAEIRAACAjUoRAAAAoQgAAMBGpQgAAIBQBAAAYKNSBAAAQCgCAACwUSkCAAAgFAEAANioFAEAABCKAAAAbFSKAAAACEUAAAA2KkUAAACEIgAAABuVIgAAAEIRAACAjUoRAAAAoQgAAMBGpQgAAIBQBAAAYKNSBAAAQCgCAACwUSkCAAAgFAEAANioFAEAABCKAAAAbFSKAAAACEUAAAA2KkUAAACEIgAAABuVIgAAABHx5yoUbzHx+wr82jFd67v1XAAAKM6oFAEAABCKAAAAbFSKAAAACEUAAABeUCmaNm2a3H777VKhQgUJDQ2Vfv36yd69e13aXLlyRUaMGCFVq1aV8uXLS//+/SU5OdmlzZEjR6RXr15StmxZ8z7jxo2Tq1evurT58ssvpVWrVhIUFCT16tWT2NhYj3yPAACgeCjSUPTVV1+ZwLNlyxaJj4+X9PR06datm1y8eNHZZsyYMfLPf/5Tli5datqfOHFC7r//fufxjIwME4jS0tJk06ZN8v7775vAM2nSJGebQ4cOmTadO3eW7du3y+jRo+Wxxx6T1atXe/x7BgAA3snHsixLvMTp06dNpUfDT8eOHeXcuXNSvXp1WbhwofzXf/2XabNnzx5p1KiRbN68We644w754osvpHfv3iYshYWFmTbz58+X8ePHm/cLDAw0X69cuVJ27tzp/KyHHnpIzp49K3FxcTc8r5SUFKlYsaI5n5CQEPGEudvn5qld6unoAn8GU/IBACVZSj5/f3vVQGs9aVWlShXzuG3bNlM9io7+/1/8DRs2lJo1a5pQpPSxadOmzkCkunfvbi5EYmKis03m93C0cbzH9VJTU83rM28AAKBk85pQdO3aNdOtddddd8ltt91m9iUlJZlKT6VKlVzaagDSY442mQOR47jjWG5tNOxcvnw527FOmiwdW1RUlJu/WwAA4G28JhTp2CLt3lq0aFFRn4pMmDDBVK0c29GjR4v6lAAAQGm4zcfIkSNlxYoV8vXXX0uNGjWc+8PDw80Aah37k7lapLPP9JijzdatW13ezzE7LXOb62es6XPtXyxTpkyW89EZaroBAIDSo0grRTrGWwPRp59+KuvXr5c6deq4HG/durUEBATIunXrnPt0yr5OwW/fvr15ro8JCQly6tQpZxudyaaBp3Hjxs42md/D0cbxHgAAAP5F3WWmM8s+//xzs1aRYwyQjuPRCo4+Dhs2TMaOHWsGX2vQGTVqlAkzOvNM6RR+DT+DBg2S6dOnm/eYOHGieW9HtefJJ5+U2bNny3PPPSePPvqoCWBLliwxM9IAAACKvFI0b948M2anU6dOEhER4dwWL17sbBMTE2Om3OuijTpNX7vCli1b5jzu5+dnut70UcPSww8/LIMHD5apU6c622gFSgOQVoeaN28ur732mrzzzjtmBhoAAIDXrVPkrVinCACA4qdYr1MEAABQVAhFAAAAhCIAAAAblSIAAABCEQAAgI1KEQAAAKEIAADARqUIAACAUAQAAGCjUgQAAEAoAgAAsFEpAgAAIBQBAADYqBQBAAAQigAAAGxUigAAAAhFAAAANipFAAAAhCIAAAAblSIAAABCEQAAgI1KEQAAAKEIAADARqUIAACAUAQAAGCjUgQAAEAoAgAAsFEpAgAAIBQBAADYqBQBAAAQigAAAGxUigAAAAhFAAAANipFAAAAhKJi7tA3cseRt4v6LAAAKBGoFAEAABCKAAAAbFSKAAAACEUAAAA2KkUAAACEIgAAgJuoFNWtW1fOnDmTZf/Zs2fNMQAAgFIRig4fPiwZGRlZ9qempsrx48fdcV4AAAAe5Z+fxsuXL3d+vXr1aqlYsaLzuYakdevWSe3atd17hgAAAN4Wivr162cefXx8ZMiQIS7HAgICTCB67bXX3HuGAAAA3haKrl27Zh7r1Kkj33//vVSrVq2wzgsAAMB7Q5HDoUOH3H8mAAAAxS0UKR0/pNupU6ecFSSHBQsWuOPcAAAAvDsUvfjiizJ16lRp06aNREREmDFGAAAApS4UzZ8/X2JjY2XQoEHuPyMAAIDisk5RWlqa3Hnnne4/GwAAgOIUih577DFZuHCh+88GBXLHkbedGwAA8GAounLlisycOVPuvvtuGTVqlIwdO9Zly6uvv/5a+vTpI5GRkWZc0meffeZyfOjQoWZ/5q1Hjx4ubX755RcZOHCghISESKVKlWTYsGFy4cIFlzY7duyQDh06SHBwsERFRcn06dML8m0DAIASrEBjijRktGjRwny9c+dOl2P5GXR98eJFad68uTz66KNy//33Z9tGQ9B7773nfB4UFORyXAPRyZMnJT4+XtLT0+WRRx6Rxx9/3FnJSklJkW7dukl0dLQZC5WQkGA+TwOUtgMAAChwKNqwYYNbrt69995rttxoCAoPD8/22O7duyUuLs4sJKkz4dSsWbOkZ8+eMmPGDFOB+uijj8wYKF0mIDAwUJo0aSLbt283la6cQpHew003Bw1WAACgZCtQ95knffnllxIaGioNGjSQp556Ss6cOeM8tnnzZlPxcQQipRUhX19f+e6775xtOnbsaAKRQ/fu3WXv3r3y66+/ZvuZ06ZNM/d1c2za5QYAAEq2AlWKOnfunGs32fr168UdtOtMu9X0tiIHDx6U//mf/zGVJQ06fn5+kpSUZAJTZv7+/lKlShVzTOmjvj6zsLAw57HKlStn+dwJEya4jI3SShHBCACAkq1AocgxnshBx/Jol5SOL7r+RrE346GHHnJ+3bRpU2nWrJnceuutpnrUpUsXKSzaZXf92CUAAFCyFSgUxcTEZLt/ypQpWWZ+uVPdunXNTWgPHDhgQpGONdLbjGR29epVMyPNMQ5JH5OTk13aOJ7nNFYJAACUPm4dU/Twww8X6n3Pjh07ZsYU6a1FVPv27eXs2bOybds2l647vRdbu3btnG106r9Wsxx0ppqOUcqu6wwAAJRObg1FOtZH1wLKK60qabebburQoUPm6yNHjphj48aNky1btsjhw4fNzWf79u0r9erVMwOlVaNGjcy4o+HDh8vWrVtl48aNMnLkSNPtpjPP1IABA8wga12/KDExURYvXixvvPFGvtZTAgAAJV+Bus+uX1PIsiyzVtC//vUv+dOf/pTn99H2OmjbwRFUdFzSvHnzzHpI77//vqkGacjR9YZeeukll/E+OuVeg5B2p+mss/79+8ubb77pPK6zx9asWSMjRoyQ1q1bm+63SZMmsUYRAAC4+VCkQSMzDSPaHTV16lQTXPKqU6dOJlDlZPXq1Td8D51pdqNbjugA7W+++SbP5wUAAEqfAoWizCtMAwAAlNpQ5KADnHVVaaUrRbds2dJd5wUAAOD9oUinwetgZl0vSFeUVjruR8cHLVq0SKpXr+7u8wQAAPC+2WejRo2S8+fPm9lcuiaQbrpwo678/Ic//MH9ZwkAAOCNlSK9CevatWvNlHiHxo0by5w5c/I10BoAAKBYV4p0ccSAgIAs+3WfHgMAACgVoeiee+6RZ555Rk6cOOHcd/z4cRkzZkyh3pMMAADAq0LR7Nmzzfih2rVrmxu06qZ3otd9s2bNcv9ZAgAAeOOYoqioKPnhhx/MuKI9e/aYfTq+KDo62t3nBwAA4H2VIr3Zqg6o1oqQj4+PdO3a1cxE0+322283axWxcjQAACjxoej11183N18NCQnJ9tYfTzzxhMycOdOd5wcAAOB9oeinn34yd6XPiU7H11WuAQAASnQoSk5OznYqvoO/v7+cPn3aHecFAADgvaHolltuMStX52THjh0SERHhjvMCAADw3lDUs2dP+dOf/iRXrlzJcuzy5csyefJk6d27tzvPDwAAwPum5E+cOFGWLVsm9evXl5EjR0qDBg3Mfp2Wr7f4yMjIkBdeeKGwzhUAAMA7QlFYWJhs2rRJnnrqKZkwYYJYlmX26/T87t27m2CkbQAAAEr84o21atWSVatWya+//ioHDhwwweg3v/mNVK5cuXDOEAAAwFtXtFYagnTBRgAAgFJ77zMAAICShlAEAABAKAIAALBRKQIAACAUAQAA2KgUAQAAEIoAAABsVIoAAABuZvFGuE9M/L4s+35IOXPD19VIuSwt+YMAAMAtqBQBAAAQigAAAGxUigAAAAhFAAAANipFAAAAhCIAAAAblSIAAABCEQAAgI1KEQAAAKEIAADARqUIAACAUAQAAGCjUgQAAEAoAgAAsFEpAgAAIBQBAADYqBQBAAAQigAAAGxUigAAAAhFAAAANipFAAAAhCIAAAAblSIAAABCEQAAgBdUir7++mvp06ePREZGio+Pj3z22Wcuxy3LkkmTJklERISUKVNGoqOjZf/+/S5tfvnlFxk4cKCEhIRIpUqVZNiwYXLhwgWXNjt27JAOHTpIcHCwREVFyfTp0z3y/QEAgOKjSEPRxYsXpXnz5jJnzpxsj2t4efPNN2X+/Pny3XffSbly5aR79+5y5coVZxsNRImJiRIfHy8rVqwwQevxxx93Hk9JSZFu3bpJrVq1ZNu2bfLXv/5VpkyZIm+//bZHvkcAAFA8+Bflh997771my45WiV5//XWZOHGi9O3b1+z74IMPJCwszFSUHnroIdm9e7fExcXJ999/L23atDFtZs2aJT179pQZM2aYCtRHH30kaWlpsmDBAgkMDJQmTZrI9u3bZebMmS7hKbPU1FSzZQ5WAACgZPPagdaHDh2SpKQk02XmULFiRWnXrp1s3rzZPNdH7TJzBCKl7X19fU1lydGmY8eOJhA5aLVp79698uuvv2b72dOmTTOf5di0yw0AAJRsXhuKNBAprQxlps8dx/QxNDTU5bi/v79UqVLFpU1275H5M643YcIEOXfunHM7evSoG78zAADgjYq0+8xbBQUFmQ0AAJQeXlspCg8PN4/Jycku+/W545g+njp1yuX41atXzYy0zG2ye4/MnwEAAOC1oahOnTomtKxbt85lwLOOFWrfvr15ro9nz541s8oc1q9fL9euXTNjjxxtdEZaenq6s43OVGvQoIFUrlzZo98TAADwXkUainQ9IZ0JpptjcLV+feTIEbNu0ejRo+Xll1+W5cuXS0JCggwePNjMKOvXr59p36hRI+nRo4cMHz5ctm7dKhs3bpSRI0eamWnaTg0YMMAMstb1i3Tq/uLFi+WNN96QsWPHFuW3DgAAvEyRjin617/+JZ07d3Y+dwSVIUOGSGxsrDz33HNmLSOdOq8Vod/+9rdmCr4uwuigU+41CHXp0sXMOuvfv79Z28hBZ4+tWbNGRowYIa1bt5Zq1aqZBSFzmo4PAABKJx9LFwRCrrTbTsOVzkTTlbPdLSZ+X5Z9P6QsvuHraqRsk/uu1XPZt6Vm3sPemK7189wWAICS/vvba8cUAQAAeBKhCAAAgFAEAABgo1IEAABAKAIAALBRKQIAACAUAQAA2KgUAQAAEIoAAABsVIoAAAAIRQAAADYqRQAAAIQiAAAAG5UiAAAAQhEAAICNShEAAAChCAAAwEalCAAAgFAEAABgo1IEAABAKAIAALBRKQIAACAUAQAA2KgUAQAAEIoAAABsVIoAAAAIRQAAADYqRQAAAIQiAAAAG5UiAAAAQhEAAICNShEAAAChCAAAwEalCAAAgFAEAABgo1IEAABAKAIAALBRKQIAACAUAQAA2KgUAQAAEIoAAABsVIoAAABExJ+rULwt9z3g8vxYyuIsbVqFPOjBMwIAoHiiUgQAAEAoAgAAsFEpAgAAIBQBAADYqBQBAAAQigAAAGxUigAAAAhFAAAAxaBSNGXKFPHx8XHZGjZs6Dx+5coVGTFihFStWlXKly8v/fv3l+TkZJf3OHLkiPTq1UvKli0roaGhMm7cOLl69WoRfDcAAMCbef2K1k2aNJG1a9c6n/v7//8pjxkzRlauXClLly6VihUrysiRI+X++++XjRs3muMZGRkmEIWHh8umTZvk5MmTMnjwYAkICJBXXnmlSL4fAADgnbw+FGkI0lBzvXPnzsm7774rCxculHvuucfse++996RRo0ayZcsWueOOO2TNmjWya9cuE6rCwsKkRYsW8tJLL8n48eNNFSowMLAIviMAAOCNvLr7TO3fv18iIyOlbt26MnDgQNMdprZt2ybp6ekSHR3tbKtdazVr1pTNmzeb5/rYtGlTE4gcunfvLikpKZKYmJjjZ6amppo2mTcAAFCyeXUoateuncTGxkpcXJzMmzdPDh06JB06dJDz589LUlKSqfRUqlTJ5TUagPSY0sfMgchx3HEsJ9OmTTPdcY4tKiqqUL4/AADgPby6++zee+91ft2sWTMTkmrVqiVLliyRMmXKFNrnTpgwQcaOHet8rpUighEAACWbV1eKrqdVofr168uBAwfMOKO0tDQ5e/asSxudfeYYg6SP189GczzPbpySQ1BQkISEhLhsAACgZCtWoejChQty8OBBiYiIkNatW5tZZOvWrXMe37t3rxlz1L59e/NcHxMSEuTUqVPONvHx8SbkNG7cuEi+BwAA4J28uvvs2WeflT59+pgusxMnTsjkyZPFz89Pfv/735uxPsOGDTPdXFWqVDFBZ9SoUSYI6cwz1a1bNxN+Bg0aJNOnTzfjiCZOnGjWNtJqEAAAQLEIRceOHTMB6MyZM1K9enX57W9/a6bb69cqJiZGfH19zaKNOmNMZ5bNnTvX+XoNUCtWrJCnnnrKhKVy5crJkCFDZOrUqUX4XQEAAG/k1aFo0aJFuR4PDg6WOXPmmC0nWmVatWpVIZwdAAAoSYrVmCIAAIDCQigCAAAgFAEAANioFAEAABCKAAAAbFSKAAAACEUAAAA2KkUAAACEIgAAABuVIgAAAEIRAACAjUoRAAAAoQgAAMBGpQgAAIBQBAAAYKNSBAAAQCgCAACwUSkCAAAgFAEAANioFAEAABCKAAAAbFSKAAAACEUAAAA2KkUAAACEIgAAABuVIgAAAEIRAACAjUoRAAAAoQgAAMBGpQgAAIBQBAAAYKNSVMLUSNlmNgAAkD+EIgAAAEIRAACAjUoRAAAAoQgAAMBGpQgAAIBQBAAAYPP/v0eUQjHx+wr82jFd67v1XAAAKGp0nwEAABCKAAAAbFSKAAAAGFNUOvyQsviGbVqFPOiRcwEAwFtRKQIAACAUAQAA2KgUAQAAEIoAAABsVIoAAACYfVZy1UjZ5vz6WEjrIj0XAACKAypFAAAAVIpQUNw3DQBQ0nBD2GLcLQYAANynVHWfzZkzR2rXri3BwcHSrl072bp1q5SWIOXYAABAKa8ULV68WMaOHSvz5883gej111+X7t27y969eyU0NFRKu9xuBeIIU+4asD3oHwW/rciYrvXdcg4AAJTaUDRz5kwZPny4PPLII+a5hqOVK1fKggUL5Pnnny/q0ysV3B2uAMAT4yBvBv+QK15KRShKS0uTbdu2yYQJE5z7fH19JTo6WjZv3pylfWpqqtkczp07Zx5TUlIK5fyuXLyQ9ZwvXcm2berl9Jv6rOqXt5jH4xVaOPfdcn57jvvMZzrOyT/7c8pNTu+z5dL7UhAPfligl0mLCv2lOBpxT70Cv3bO+gNZ9m0//49Cv1buPmdv/9yicjPfb3H9noujaZ/9UODX8jN98xy/ty3LytsLrFLg+PHjejWsTZs2uewfN26c1bZt2yztJ0+ebNqzcQ34GeBngJ8Bfgb4GZBifw2OHj2ap7xQKipF+aUVJR1/5HDt2jX55ZdfpGrVquLj43PDVBoVFSVHjx6VkJAQD5wtuPZFj597rn1pxM+99197rRCdP39eIiMj8/S+pSIUVatWTfz8/CQ5Odllvz4PDw/P0j4oKMhsmVWqVClfn6l/SISiosG1Lzpce659acTPvXdf+4oVK+b5/UrFlPzAwEBp3bq1rFu3zqX6o8/bt29fpOcGAAC8Q6moFCntDhsyZIi0adNG2rZta6bkX7x40TkbDQAAlG6lJhQ9+OCDcvr0aZk0aZIkJSVJixYtJC4uTsLCwtz6OdrtNnny5Czdbyh8XPuiw7Xn2pdG/NyXvGvvo6Ot3fqOAAAAxVCpGFMEAABwI4QiAAAAQhEAAICNShEAAAChqGDmzJkjtWvXluDgYGnXrp1s3bo11/ZLly6Vhg0bmvZNmzaVVatW8cPngWufmJgo/fv3N+11JXJdhgGeufZ/+9vfpEOHDlK5cmWz6X0Gb/T/Cdxz7ZctW2aWHtEFZ8uVK2dm2n74YQFvGoh8/33vsGjRIvP3Tr9+/biKHrj2sbGx5npn3vR1+eau+4uVFosWLbICAwOtBQsWWImJidbw4cOtSpUqWcnJydm237hxo+Xn52dNnz7d2rVrlzVx4kQrICDASkhI8Pi5l7Zrv3XrVuvZZ5+1Pv74Yys8PNyKiYnx+DmX1ms/YMAAa86cOdaPP/5o7d692xo6dKhVsWJF69ixYx4/99J27Tds2GAtW7bM/H1z4MAB6/XXXzd/B8XFxXn83EvbtXc4dOiQdcstt1gdOnSw+vbt67HzLc3X/r333rNCQkKskydPOrekpKR8fy6hKJ/0BrIjRoxwPs/IyLAiIyOtadOmZdv+gQcesHr16uWyr127dtYTTzyR7z+s0i6/1z6zWrVqEYqK6Nqrq1evWhUqVLDef//9mzmNUulmr71q2bKl+QcZCv/a68/6nXfeab3zzjvWkCFDCEUeuvYaivQfXjeLMUX5kJaWJtu2bTNdAQ6+vr7m+ebNm7N9je7P3F517949x/Zw37WH91z7S5cuSXp6ulSpUoU/Fg9ee/2Hr97OaO/evdKxY0euvQeu/dSpUyU0NFSGDRvG9fbwtb9w4YLUqlXL3Ci2b9++ZghFfhGK8uHnn3+WjIyMLKtg63NdJTs7uj8/7eG+aw/vufbjx483d6m+/h8IKJxrf+7cOSlfvry572OvXr1k1qxZ0rVrVy53IV/7b7/9Vt59910zpg6evfYNGjSQBQsWyOeffy5///vfzf1N77zzTjl27Fi+PrvU3OYDQNF49dVXzaDTL7/8smADH5FvFSpUkO3bt5t/OWulSO/9WLduXenUqRNXs5CcP39eBg0aZAJRtWrVuM4epjd3z3yDdw1EjRo1krfeekteeumlPL8PoSgf9Afdz89PkpOTXfbr8/Dw8Gxfo/vz0x7uu/Yo+ms/Y8YME4rWrl0rzZo144/EQ9deuxrq1atnvtbZZ7t375Zp06YRigrx2h88eFAOHz4sffr0ce7TaoXy9/c3XZi33nprfk6h1Krmhr/vAwICpGXLlnLgwIF8fTbdZ/mgpejWrVubf3ll/qHX55kTama6P3N7FR8fn2N7uO/ao2iv/fTp082/0PTGyzpFHJ679tfT16SmpvJHUIjXXpddSUhIMBU6x3bfffdJ586dzdc6zgWe+7nX7jf984iIiJB8uemh2qVwmmBQUJAVGxtrprw+/vjjZpqgY+rfoEGDrOeff95lSr6/v781Y8YMMzV58uTJTMn30LVPTU01U8J1i4iIMNPz9ev9+/ff3A9BKZTfa//qq6+a6bSffPKJyxTZ8+fPF+F3UTqu/SuvvGKtWbPGOnjwoGmvf/fo30F/+9vfivC7KB3X/nrMPvPctX/xxRet1atXm5/7bdu2WQ899JAVHBxspvPnB6GoAGbNmmXVrFnT/KWv0wa3bNniPHb33Xeb/xEyW7JkiVW/fn3TvkmTJtbKlSsL8rHI57XXtUI091+/aTsU7rXXJRCyu/b6jwIU7rV/4YUXrHr16plfCJUrV7bat29vfsHAM3/fZ0Yo8ty1Hz16tLNtWFiY1bNnT+uHH37I92f66H/yV1sCAAAoeRhTBAAAQCgCAACwUSkCAAAgFAEAANioFAEAABCKAAAAbFSKAAAACEUAAAA2KkUAAACEIgBF5ejRo/Loo49KZGSkuQFkrVq15JlnnpEzZ85kaZuYmCgPPPCAVK9eXYKCgqR+/foyadIkuXTpkku72rVri4+Pj9nKlCljnuvr1q9ff8PzOXTokAwYMMCcT3BwsNSoUUP69u0re/bscev3DcB7USkC4HH//ve/pU2bNrJ//375+OOP5cCBAzJ//nznXbB/+eUXZ9stW7ZIu3btJC0tTVauXCn79u2TP//5zxIbGytdu3Y1+zObOnWqnDx5Uvbu3SsffPCBVKpUSaKjo81rcpKenm7e69y5c7Js2TLz2sWLF0vTpk3l7NmzhXYd9HMBeJGbvF8bAORbjx49rBo1aliXLl1y2X/y5EmrbNmy1pNPPmmeX7t2zWrcuLHVpk0bKyMjw6Xt9u3bLR8fH+vVV191uRFtTExMls+bNGmS5evra+3Zsyfb8/nxxx/NDWsPHz6c63kfPXrU3H1bb7Sq59m6dWuXm1TOnTvXqlu3rhUQEGBuAv3BBx+4vF4/Q9v06dPHvN5xg9zPPvvMatmypbkreJ06dawpU6ZY6enpuZ4LAPejUgTAo7QKtHr1ann66adNF1dm4eHhMnDgQFOl0Qyxfft22bVrl4wdO1Z8fV3/umrevLmpAGml6Ua0W07f7/PPP8/2uHbL6ft/8sknkpGRkW2bCxcuyN133y3Hjx+X5cuXy08//STPPfecXLt2zRz/9NNPzef88Y9/lJ07d8oTTzwhjzzyiGzYsMHlfaZMmSK/+93vJCEhwXQffvPNNzJ48GDzWv1e33rrLVMFy62yBaCQFELQAoAcaWVF/+r59NNPsz0+c+ZMczw5OdlatGiR+VorOdn5wx/+YJUpU+aGlSIVFhZmPfXUUzme1+zZs031pkKFClbnzp2tqVOnWgcPHnQef+utt8yxM2fOZPv6O++80xo+fLjLvv/+7/+2evbs6Xyu38vo0aNd2nTp0sV65ZVXXPZ9+OGHVkRERI7nCqBwUCkCUCTsjOD+trm9hw7AzsmIESMkKSlJPvroIzOuaenSpdKkSROJj483x7Vq1bJlS6lSpUq2r9+9e7fcddddLvv0ue7PTMdSZaYVJx0HVb58eec2fPhwMy7q+oHkAAoXoQiAR9WrV8+Ek+vDgoPur1y5sunS0llmjn05tXW0yY3OaDt9+rTUqVMn13YVKlSQPn36mK4rDSsdOnSQl19+2Ry7vquvoMqVK5elW+7FF180ocuxadeaDkLXWXAAPIdQBMCjqlatamZ6zZ07Vy5fvuxyzFGpefDBB01watGihTRs2FBiYmKcY3ccNLSsXbtWfv/739/wM9944w0zZqhfv355Pk/9fP3sixcvmufNmjUzgSXzzLjMGjVqJBs3bnTZp88bN26c6+e0atXKzHbTsHj9dv04KgCFrJC65QAgR/v27bOqVatmdejQwfrqq6+sI0eOWF988YV12223Wb/5zW9cxu1s3LjRjPXp16+f9d1331n/+c9/rCVLllhRUVFmHM+VK1dcxhTpWCCdxabvqe+t43yun6V2PR2zdN9991lLly61EhMTrf3791vvvPOOVa5cOfN+KjU11cwo03P+9ttvzXijTz75xNq0aZM5rmOkdNaZzi7T7++1116z/Pz8rA0bNjg/J7uxVHFxcZa/v7+ZcbZz505r165d1scff2y98MIL/AQBHkYoAlAkdPr7kCFDzABoDRMackaNGmX9/PPPWdru2LHD6t+/v1WlShXT9tZbb7UmTpxoXbx40aWdhiINHroFBgZaNWvWtB544AFr/fr1uZ7L6dOnzaBtDWXly5c3A6qbNm1qzZgxw2UpAD1nPY+QkBAT1HSpAA1q+ZmSn90Acw1GGvB00Li+d9u2ba233347X9cTwM3z0f8UdjUKAADA29FhDQAAQCgCAACwUSkCAAAgFAEAANioFAEAABCKAAAAbFSKAAAACEUAAAA2KkUAAACEIgAAABuVIgAAIBD5XwTI+Q+CeNWdAAAAAElFTkSuQmCC"/>
 </div>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=a74a3be2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>now calc MSP auroc</p>
 </div>
 </div>
 </div>
@@ -8743,13 +8880,34 @@ Night: 0.7765062206114332
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Interpretation</p>
-<p>AUROC ≈ 1.0 → excellent OOD detection.</p>
-<p>AUROC ≈ 0.5 → random guessing.</p>
-<p>Higher AUROC means MSP separates ID and OOD better.</p>
-<p>The pedestrian model achieved an AUROC of 0.351, indicating that MSP performed poorly for this task.</p>
-<p>The model was often more confident on OOD inputs than on in-distribution inputs, violating the assumption that OOD samples should receive lower confidence scores.</p>
-<p>Therefore, MSP was ineffective for detecting OOD in this setting.</p>
+<p><strong>Interpretation</strong></p>
+<p>Higher AUROC means MSP separates ID and OOD better. if not heavy overlap and no dist</p>
+<ul>
+<li><p>AUROC ≈ 1.0 -&gt; excellent OOD detection.</p>
+</li>
+<li><p>AUROC ≈ 0.5 -&gt; random guessing.</p>
+</li>
+<li><p>AUROC &lt; 0.5 -&gt; worse than random guess</p>
+</li>
+</ul>
+<p>1] The pedestrian model achieved an AUROC of 0.351, indicating that MSP performed poorly for this task.</p>
+<p>2] The model was often more confident on OOD inputs than on ID inputs, violating the assumption that OOD samples should receive lower confidence scores.</p>
+<p>3] Therefore, MSP was ineffective for detecting OOD in this setting.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=f3a2bdb3">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>AUROC asks:
+"If I randomly pick one ID image and one OOD image, how often does the OOD image get a higher OOD score?"</p>
+<p>Eg: Good detector: ID score=0.02 but OOD score = 0.15, so AUROC high (~1)</p>
+<p>Bad detector: ID score≈ 0.04 but OOD score ≈ 0.02, so, OOD gets LOWER scores than ID -&gt; AUROC = 0.35</p>
+<p>MSP was confidently treating OOD images as if they were normal ID images.</p>
 </div>
 </div>
 </div>
@@ -8772,6 +8930,23 @@ Night: 0.7765062206114332
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 <p>Take the pedestrian model and remove its last classification layer.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=633678e2">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>We did not use the final classifier output (pedestrian/not pedestrian).</p>
+<ul>
+<li>Instead, we used the ResNet feature extractor.</li>
+<li>For every image: loaded the image, preprocessed it, passed it through ResNet up to the layer before the FC layer,</li>
+<li>extracted the resulting 512-dimensional feature vector,</li>
+<li>and stored it.</li>
+</ul>
 </div>
 </div>
 </div>
@@ -9136,7 +9311,7 @@ Night: 0.3984159960341122
 </div>
 <div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
 </div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
-<p>Now compute AURoc</p>
+<p>Now compute KNN AURoc</p>
 </div>
 </div>
 </div>
@@ -9193,6 +9368,34 @@ Night: 0.3984159960341122
 <p>That means k-NN worked much better than MSP.</p>
 <p>MSP AUROC: 0.351</p>
 <p>k-NN AUROC: 0.817</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=61e23273">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
+<p>1] MSP asks: "How confident is the classifier?"</p>
+<p>2] k-NN asks: "Does this image look similar to normal images?"</p>
+<p>3] we learned that Confidence is not a reliable indicator of OOD.</p>
+<ul>
+<li>because, The pedestrian model was very confident on night images, even though they were OOD.</li>
+<li>BUT, Their deep features were far away from normal validation images, so k-NN could detect them.</li>
+</ul>
+<p>4] So, the main takeaway from this is, Feature-space methods (k-NN) can detect OOD inputs much better than relying only on classifier confidence (MSP).</p>
+</div>
+</div>
+</div>
+</div>
+<div class="jp-Cell jp-MarkdownCell jp-Notebook-cell" id="cell-id=cbe126af">
+<div class="jp-Cell-inputWrapper" tabindex="0">
+<div class="jp-Collapser jp-InputCollapser jp-Cell-inputCollapser">
+</div>
+<div class="jp-InputArea jp-Cell-inputArea"><div class="jp-InputPrompt jp-InputArea-prompt">
+</div><div class="jp-RenderedHTMLCommon jp-RenderedMarkdown jp-MarkdownOutput" data-mime-type="text/markdown">
 </div>
 </div>
 </div>
